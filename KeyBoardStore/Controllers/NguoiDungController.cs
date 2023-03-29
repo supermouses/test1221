@@ -90,8 +90,8 @@ namespace KeyBoardStore.Controllers
         }
         public ActionResult DangXuat()
         {
-            Session["TaiKhoan"] = null;
-            return RedirectToAction("Home", "Home");
+            Session.Abandon();
+            return RedirectToAction("DangNhap", "NguoiDung");
 
         }
     }
