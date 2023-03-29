@@ -1,0 +1,126 @@
+﻿@model KeyBoardStore.Models.BanPhim
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<style>
+    h2{
+        text-align:center;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h2>Chỉnh Sửa</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.maphim)
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.maloai, "Mã Loại", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.maloai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.maloai, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hang,"Hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Hang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Hang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tenphim,"Tên Phím", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tenphim, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tenphim, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-8">
+            @Html.LabelFor(model => model.hinh,"Hình", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                   style="display:none;" />
+            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+            <img src="@Model.hinh" style="width:200px" id="pictureUpload" />
+        </div>
+    </div>
+    @section upload
+{
+        <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax(
+                        {
+                            type: 'POST',
+
+                            url: '/BanPhim/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#hinh').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+                            }
+                        });
+                }
+            });
+        </script>
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.giaban, "Giá Bán", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.giaban, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.giaban, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ngaycapnhat, "Ngày Cập Nhật", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.soluongton, "Số Lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.soluongton, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.soluongton, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay Về", "Index")
+</div>

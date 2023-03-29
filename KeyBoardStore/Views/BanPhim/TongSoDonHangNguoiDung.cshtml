@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<KeyBoardStore.Models.ChiTietDonHang>
+@{
+    ViewBag.Title = "TongSoDonHangNguoiDung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Tổng đơn hàng Người Dùng đã đặt</h2>
+<table class="table">
+    <tr>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            Mã Đơn
+        </th>
+        <th>
+            Mã Phím
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Giá
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.KhachHang.hoten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.madon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maphim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soluong)
+            </td>
+            <td>
+                @string.Format("{0:0,000}", item.gia)
+                @*@Html.DisplayFor(modelItem => item.gia)*@
+            </td>
+            <td class="pull-right">
+                @Html.ActionLink("Xóa", "DeleteDonHang", "BanPhim", new { id = item.madon }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        
+    }
+</table>
+<div>
+    @Html.ActionLink("Quay Về", "Index")
+</div>

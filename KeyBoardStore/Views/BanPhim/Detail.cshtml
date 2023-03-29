@@ -1,0 +1,76 @@
+﻿@model KeyBoardStore.Models.BanPhim
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>CHI TIẾT</h2>
+</div>
+<style>
+    .form-horizontal{
+        text-align:center;
+    }
+    .Gia{
+        color:red;
+    }
+</style>
+<div>
+    <hr />
+    <dl class="table">
+        <dt>
+            @Html.LabelFor(model => model.maphim, "Mã Phím", htmlAttributes: new { @class = "text" })
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.maphim)
+        </dd>
+        <dt>
+            @Html.LabelFor(model => model.maloai, "Mã Loại", htmlAttributes: new { @class = "text" })
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.maloai)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.tenphim, "Tên Phím", htmlAttributes: new { @class = "text" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenphim)
+        </dd>
+
+        <dt>
+            <img width="200" height="155" src="@Html.DisplayFor(model => model.hinh)" />
+        </dt>
+        <dt>
+            @Html.LabelFor(model => model.giaban, "Giá", htmlAttributes: new { @class = "" })
+        </dt>
+        <div class="Gia">
+            <dd>
+                @Html.DisplayFor(model => model.giaban)
+            </dd>
+        </div>
+        <dt>
+            @Html.LabelFor(model => model.ngaycapnhat, "Ngày Cập Nhật", htmlAttributes: new { @class = "" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaycapnhat)
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.soluongton, "Số Lượng", htmlAttributes: new { @class = "" })
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="bnt-danger">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.maphim })
+    </div>
+    @Html.ActionLink("Back to List", "Index")
+</p>

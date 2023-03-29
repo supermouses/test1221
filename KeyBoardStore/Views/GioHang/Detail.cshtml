@@ -1,0 +1,78 @@
+﻿@model KeyBoardStore.Models.BanPhim
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "../Home/_Layout.cshtml";
+}
+
+<h2>Chi Tiết</h2>
+
+<div>
+    <hr />
+    <div class="table">
+        <img width="600" src="@Html.DisplayFor(model => model.hinh)" />
+    </div>
+    <dl class="dl-horizontal">
+        @*<dt>
+                Mã Phím
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.maphim)
+            </dd>*@
+        <dt>
+            Mã Loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maloai)
+        </dd>
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluongton)
+        </dd>
+        <dt>
+            Tên Phím
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenphim)
+        </dd>
+        <dt>
+            Hãng
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hang)
+        </dd>
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaban)
+        </dd>
+
+        <dt>
+            Ngày
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaycapnhat)
+        </dd>
+
+        @*<dt>
+                Số lượng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.soluongton)
+            </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Quay Về", "GioHang","GioHang")
+</p>

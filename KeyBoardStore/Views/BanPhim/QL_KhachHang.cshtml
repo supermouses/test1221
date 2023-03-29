@@ -1,0 +1,79 @@
+﻿@model IEnumerable<KeyBoardStore.Models.KhachHang>
+
+@{
+    ViewBag.Title = "QL_KhachHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h1{
+        text-align:center;
+    }
+</style>
+<h1>Quản Lý Khách Hàng</h1>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.hoten)*@
+            Họ Tên
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tendangnhap)*@
+            Tên Đăng Nhập
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.matkhau)*@
+            Mật Khẩu
+        </th>
+        <th>
+            Email
+            @*@Html.DisplayNameFor(model => model.email)*@
+        </th>
+        <th>
+            Địa Chỉ
+            @*@Html.DisplayNameFor(model => model.diachi)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaysinh)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hoten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tendangnhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.matkhau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diachi)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.dienthoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaysinh)
+        </td>*@
+        <td>
+            @Html.ActionLink("Xóa Khách Hàng", "DeleteKhachHang", new { id = item.makh })
+        </td>
+        <td>
+            @Html.ActionLink("Sửa Khách Hàng", "EditKhachHang", new { id = item.makh })
+        </td>
+    </tr>
+}
+
+</table>
+<div class="btn btn-default">
+    @Html.ActionLink("Quay zề", "Index")
+</div>

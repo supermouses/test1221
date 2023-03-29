@@ -1,0 +1,141 @@
+﻿@model KeyBoardStore.Models.BanPhim
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tạo Bàn Phím Mới</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Hang, "Hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Hang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Hang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.maphim, "Mã Phím", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.maphim, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.maphim, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*@Html.DropDownList("TheLoai",new SelectList(Enum.GetValues(typeof(KeyBoardStore.Models.TheLoai))),
+        "Select Hang",
+        new { @class = "form-control" })*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.maloai, "Mã Loại", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.maloai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.maloai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tenphim, "Tên Phím", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tenphim, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tenphim, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.hinh,"Hình", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group" style="margin: 10px">
+        <label class="control-label col-md-2" for="hinh">Hình</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                   style="display:none;" />
+            <img src="" id="pictureUpload">
+            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+        </div>
+    </div>
+    @section upload
+                {
+        <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Admin/Home/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#pictureUpload').css('display', 'block');
+                                $('#pictureUpload').css('margin', '20px 0');
+                                $('#pictureUpload').css('width', '270px');
+                                $('#pictureUpload').css('heigh', '240px');
+                                $('#Hinh').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+                            }
+                        });
+                }
+            });
+        </script>
+    }
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.giaban, "Giá bán", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.giaban, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.giaban, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ngaycapnhat, "Ngày cập nhật", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.soluongton, "Số Lượng còn", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.soluongton, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.soluongton, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay Về", "Index")
+</div>

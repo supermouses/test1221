@@ -1,0 +1,31 @@
+﻿@model IEnumerable<KeyBoardStore.Models.BanPhim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .pull-center{
+        text-align:center;
+    }
+</style>
+<div class="pull-center">
+    <h1>Thông Tin Chi Tiết</h1>
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div>
+          <h2><strong>@item.tenphim</strong></h2>
+                    <p><strong>Giá: </strong>@item.giaban</p>
+                    <p><strong>Ngày cập nhật </strong>@item.ngaycapnhat
+                    <strong>Số lượng tồn </strong>@item.soluongton</p>
+                </div>
+        <div class="pull-right">
+            Chức Năng:
+            @Html.ActionLink("Xóa", "Delete", "BanPhim", new { id = item.maphim }, new { @class = "title" })||
+            @Html.ActionLink("Sửa", "Edit", "BanPhim", new { id = item.maphim }, new { @class = "title" })||
+            @Html.ActionLink("Chi Tiết", "Detail", "BanPhim", new { id = item.maphim }, new { @class = "title" })
+        </div>
+    }
+</div>

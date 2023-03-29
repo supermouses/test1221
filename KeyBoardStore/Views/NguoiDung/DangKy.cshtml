@@ -1,0 +1,164 @@
+﻿@model KeyBoardStore.Models.KhachHang
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "../NguoiDung/_Layout.cshtml";
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: url("../../Content/Images/banner-signup.jpg");
+        /*background-size:cover;*/
+        background-attachment: fixed;
+        font-family: 'EB Garamond', serif;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    h2 {
+        color: dodgerblue;
+    }
+    .boottom{
+        margin:0px;
+    }
+    label {
+        text-underline-offset: initial;
+        text-align: center;
+        /*border: double;*/
+        border-radius: inherit;
+        color: #ffffff;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        /*border: double;
+        width: 100%;*/
+        padding: 7px;
+        border-radius: 40px;
+        /*border: 0;*/
+        /*box-shadow: 1px 2px 8px rgba(0,0,0.2);*/
+    }
+
+    input[type=text], input[type=password], input[type=datetime] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: double;
+        width: 100%;
+        resize: vertical;
+        padding: 15px;
+        border-radius: 40px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            outline: none;
+        }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    .container {
+        display: block;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .btn-default {
+        border-radius: 15px;
+    }
+</style>
+<h2>Sign Up</h2>
+@using (Html.BeginForm())
+{
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.hoten, "Họ Tên", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hoten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hoten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tendangnhap, "Tên Đăng Nhập", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tendangnhap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tendangnhap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.matkhau, "Mật Khẩu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.matkhau, new { htmlAttributes = new { @type = "password" } })
+                @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MatKhauXacNhan">
+                Mật khẩu xác nhận
+            </label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line input-validation-error"
+                       data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!"
+                       id="MatKhauXacNhan" name="MatKhauXacNhan" type="password" value="" aria-describedby="MatKhauXacNhan-error" aria-invalid="true">
+                @ViewData["NhapMKXN"]
+                @ViewData["MatKhauGiongNhau"]
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.diachi, "Địa Chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.diachi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.diachi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dienthoai, "Điện Thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ngaysinh, "Ngày Sinh", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ngaysinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@*<div class="btn btn-default">
+        @Html.ActionLink("Quay Về Trang Chủ", "Home", "Home")
+    </div>*@

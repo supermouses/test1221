@@ -1,0 +1,114 @@
+﻿@model KeyBoardStore.Models.KhachHang
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "../NguoiDung/_Layout.cshtml";
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .form-group {
+        color: black;
+    }
+
+    body {
+        background-image: url("../../Content/Images/banner-login.jpg");
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: 'EB Garamond', serif;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    h1 {
+        color: darkturquoise;
+    }
+
+    label {
+        color: whitesmoke;
+    }
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        width: 100%;
+        resize: vertical;
+        padding: 15px;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .btn-default {
+        border-radius: 20px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Noto+Sans+JP:wght@100;300;400&display=swap" rel="stylesheet">
+    @Html.AntiForgeryToken()
+    @*<div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel panel-heading">*@
+                <div class="form-horizontal">
+                    <h1>Login</h1>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tendangnhap, "Tên Đăng Nhập", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tendangnhap, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tendangnhap, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.matkhau, "Mật Khẩu", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.matkhau, new { htmlAttributes = new { type = "password" } })
+                            @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Ghi Nhớ thông tin</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn btn-link col-md-offset-2">
+                            @Html.ActionLink("Chưa có tài khoản? Đăng ký ngay", "DangKy", "NguoiDung")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Đăng Nhập" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            @*</div>
+        </div>
+    </div>*@
+}
+
+@*<div class="btn btn-default">
+        @Html.ActionLink("Quay Về", "Home", "Home")
+    </div>*@

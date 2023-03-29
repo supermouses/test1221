@@ -1,0 +1,84 @@
+﻿@model KeyBoardStore.Models.KhachHang
+
+@{
+    ViewBag.Title = "DeleteKhachHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Bạn đang xóa khách hàng với thông tin sau:</h1>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.hoten)*@
+            Họ Tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoten)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tendangnhap)*@
+            Tên Đăng Nhập:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tendangnhap)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.matkhau)*@
+            Mật Khẩu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matkhau)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.email)*@
+            Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.diachi)*@
+            Địa Chỉ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diachi)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.dienthoai)*@
+            Điện Thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dienthoai)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ngaysinh)*@
+            Ngày Sinh:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaysinh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay zề", "QL_KhachHang")
+        </div>
+    }
+</div>
